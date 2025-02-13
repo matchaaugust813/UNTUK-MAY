@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk May 💖</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ffb6c1, #ff69b4);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            color: black;
+            max-width: 500px;
+        }
+        h2 {
+            color: #ff69b4;
+        }
+        input, button {
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input {
+            width: 80%;
+            text-align: center;
+        }
+        button {
+            cursor: pointer;
+        }
+        .yes { background: #4CAF50; color: white; }
+        .no { background: #f44336; color: white; }
+        .hidden { display: none; }
+        .fade { animation: fadeIn 1s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-100px); }
+            to { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Halaman 1: Form Nama -->
+    <div class="container fade" id="formNama">
+        <h2>Halo, Selamat Datang! 💖</h2>
+        <p>Website ini khusus dibuat untuk May, jadi harap masukkan nama lengkap May yaa</p>
+        <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
+        <button onclick="cekNama()">Masuk</button>
+        <p id="error" style="color: red; font-weight: bold;"></p>
+    </div>
+
+    <!-- Halaman 2: Verifikasi Foto -->
+    <div class="container fade hidden" id="verifikasiFoto">
+        <h2>Hai May! 🥰</h2>
+        <img src="foto may.jpg" alt="Foto May" width="200" style="border-radius: 10px;">
+        <p>Nah bener nih nama lengkapnya, tapi kamu beneran May kaya foto yang di atas kan?</p>
+        <button class="yes" onclick="keHalamanPernyataan()">Iya ini aku May</button>
+        <button class="no" onclick="keHalamanPenolakan()">Ehe aku bukan May yang di foto</button>
+    </div>
+
+    <!-- Halaman 3: Pernyataan Cinta -->
+    <div class="container fade hidden" id="pernyataanCinta">
+        <h2>Selamat! Kamu May yang asli 🎉</h2>
+        <p>
+            selamat kamu udah melewati tahap verifikasi may yang asli bisa saya pastikan kamu may yang aku kenal. 
+            nah jadi ginii, ehe aku malu bilangnya tapi akan ku coba, jadikan kita udah hampir 4 bulan nih kenalnyaa,
+             awal awal aku tertarik nih sama kamu karna kamu ga cuekk waktu kita pertama kali kenalan, trus itu kamu juga wibu xixiixi,
+            meet pertama kita tuh waktu ke event cosplay tuh di mikroskill, nah disitu aku awalnya ga percaya kamu bilang kalo jalan kamu tuh kaya pinguin tapi pas ketemuan langsung beneran dong,
+             itutuh imut bgt, seneng bgt aku disitu kita ketemu, wasting time bareng. okeh aku udah mulai suka sama kamu,
+              tapi gatau nih aku bilang sama kamu aku emg blom bisaa aku takut cuma persaaan sesaat tapi lama lama kita ngobrol ketemu,
+               kamu juga cerita aku seneng bgt nihhh jadiiiiii berhubung sekarang tanggalnya cantikkkk tanggal 14 nih kan yaa hehhe, kalo nunggu sabtu kelamaan
+               . tapi kalo sabtuu tetep aku coba secara langsung kok, aku boleh ga jadiiiii emmm apa ya, pacar kamu hehehhehe 😳💕  
+        </p>
+        <button class="yes" onclick="sendWhatsApp('Iya boleh kokkk')">Iya boleh 💕</button>
+        <button class="no" onclick="sendWhatsApp('Maaf yaa ga bisa')">Maaf yaa ga bisa 😢</button>
+    </div>
+
+    <!-- Halaman 4: Penolakan -->
+    <div class="container fade hidden" id="penolakan">
+        <h2>PERGI KAMU SANA PEMBOHONGGG! 😡</h2>
+        <p>AKU NYARI MAY YANG DI FOTO!!</p>
+    </div>
+
+    <script>
+        function cekNama() {
+            var nama = document.getElementById("nama").value.trim();
+            if (nama.toLowerCase() === "may hardien enjelita") {
+                document.getElementById("formNama").classList.add("hidden");
+                document.getElementById("verifikasiFoto").classList.remove("hidden");
+            } else {
+                document.getElementById("error").innerText = "Kamu siapa? Kamu bukan May! Pergi sana!";
+            }
+        }
+
+        function keHalamanPernyataan() {
+            document.getElementById("verifikasiFoto").classList.add("hidden");
+            document.getElementById("pernyataanCinta").classList.remove("hidden");
+        }
+
+        function keHalamanPenolakan() {
+            document.getElementById("verifikasiFoto").classList.add("hidden");
+            document.getElementById("penolakan").classList.remove("hidden");
+        }
+
+        function sendWhatsApp(message) {
+            var phoneNumber = "6282162448818"; // Ganti dengan nomor WhatsApp kamu
+            var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            window.location.href = whatsappUrl;
+        }
+
+        // Animasi hati jatuh
+        function createHeart() {
+            var heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+
+</body>
+</html>
